@@ -1,9 +1,12 @@
 package progettoSettimanale.progettou5w2d5.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import progettoSettimanale.progettou5w2d5.dto.DispositivoDto;
 import progettoSettimanale.progettou5w2d5.exception.DispositivoNonTrovatoException;
+import progettoSettimanale.progettou5w2d5.exception.MyBadRequestException;
 import progettoSettimanale.progettou5w2d5.model.Dispositivo;
 import progettoSettimanale.progettou5w2d5.service.DispositivoService;
 
@@ -17,7 +20,10 @@ public class DispositivoController {
     private DispositivoService dispositivoService;
 
     @PostMapping("/dispositivi")
-    public String saveDispositivo( @RequestBody DispositivoDto dispositivoDto){
+    public String saveDispositivo(@RequestBody @Validated DispositivoDto dispositivoDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            throw new MyBadRequestException(bindingResult.getAllErrors().stream().map(objectError -> objectError.getDefaultMessage()).reduce("",(s1, s2)->s1+s2));
+        }
         return dispositivoService.saveDispositivo(dispositivoDto);
     }
 
@@ -37,12 +43,20 @@ public class DispositivoController {
     }
 
     @PutMapping("/dispositivi/{id}")
-    public Dispositivo updateDispositivo( @PathVariable int id, @RequestBody DispositivoDto dispositivoDto){
+    public Dispositivo updateDispositivo( @PathVariable int id, @RequestBody @Validated DispositivoDto dispositivoDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            throw new MyBadRequestException(bindingResult.getAllErrors().stream().map(objectError -> objectError.getDefaultMessage()).reduce("",(s1,s2)->s1+s2));
+        }
         return dispositivoService.updateDispositivo(id,dispositivoDto);
     }
 
     @DeleteMapping("/dispositivi/{id}")
     public String deleteDispositivo( @PathVariable int id){
         return dispositivoService.deleteDispositivo(id);
+    }
+
+    @PatchMapping("/dispositivi/{idDispositivo}/{idDipendente}")
+    public String patchDispositivoDipendente( @PathVariable int idDispositivo, @PathVariable int idDipendente){
+        return dispositivoService.patchDispositivoDipendente(idDispositivo,idDipendente);
     }
 }

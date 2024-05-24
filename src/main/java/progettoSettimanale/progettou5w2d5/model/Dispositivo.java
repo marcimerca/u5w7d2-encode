@@ -1,5 +1,6 @@
 package progettoSettimanale.progettou5w2d5.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import progettoSettimanale.progettou5w2d5.enums.Stato;
@@ -21,5 +22,6 @@ public abstract class Dispositivo {
 
     @ManyToOne
     @JoinColumn(name = "dipendente_id")
+    @JsonIgnore(value = true)
     private Dipendente dipendente;
 }

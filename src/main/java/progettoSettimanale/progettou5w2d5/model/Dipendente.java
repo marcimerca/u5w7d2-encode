@@ -1,5 +1,6 @@
 package progettoSettimanale.progettou5w2d5.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,6 +21,7 @@ public class Dipendente {
     private String email;
 
     @OneToMany(mappedBy = "dipendente")
+
     private List<Dispositivo> dispositivi;
 
     private String foto;
