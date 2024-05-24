@@ -12,6 +12,7 @@ import lombok.Data;
 import progettoSettimanale.progettou5w2d5.enums.Stato;
 import progettoSettimanale.progettou5w2d5.model.Dispositivo;
 
+//NB: durante la post e la put, è necessario (ad esempio su Postman) aggiungere "type": "smartphone" o "type": "computer" per indicare il tipo di dispositivo
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,

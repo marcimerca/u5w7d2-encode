@@ -13,6 +13,8 @@ import progettoSettimanale.progettou5w2d5.service.DispositivoService;
 import java.util.List;
 import java.util.Optional;
 
+//NB: durante la post e la put, è necessario (ad esempio su Postman) aggiungere "type": "smartphone" o "type": "computer" per indicare il tipo di dispositivo
+
 @RestController
 public class DispositivoController {
 
