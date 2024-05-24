@@ -1,6 +1,8 @@
 ## Indicazioni 
 ### NB: durante la post e la put, è necessario (ad esempio su Postman) aggiungere "type": "smartphone" o "type": "computer" per indicare il tipo di dispositivo
 
+![Test Image](https://github.com/marcimerca/progettou5w2d5/blob/main/Screenshot%202024-05-24%20alle%2018.30.47%202.png)
+
 
 ## Funzionalità aggiuntive
 
